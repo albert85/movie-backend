@@ -6,13 +6,18 @@ import validateMovieBody from './validator';
 
 const route = express.Router();
 
-route.post('/',
-  AuthCheck.checkAuthStatus,
-  AuthCheck.checkAuthStatus,
-  validateMovieBody.createMovie,
-  validate,
-  Movies.createMovieList);
-  
-route.get('/', AuthCheck.checkAuthStatus, AuthCheck.checkAuthStatus, Movies.getAllUserMovieList);
+route.route('/')
+  .post(
+    AuthCheck.checkAuthStatus,
+    AuthCheck.checkAuthStatus,
+    validateMovieBody.createMovie,
+    validate,
+    Movies.createMovieList)
+  .get(
+    AuthCheck.checkAuthStatus,
+    AuthCheck.checkAuthStatus,
+    Movies.getAllUserMovieList);
+
+route.get('/movieId', AuthCheck.checkAuthStatus, AuthCheck.checkAuthStatus, Movies.updateMovieList);
 
 export default route;
