@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import mongoose, { Schema, model } from 'mongoose';
 
 const movieSchema = new Schema({
   title: {
@@ -15,6 +15,10 @@ const movieSchema = new Schema({
   },
   poster: {
     type: String,
+  },
+  userId: {
+    type: mongoose.Types.ObjectId,
+    ref: 'users',
   },
 });
 

@@ -22,7 +22,16 @@ class Movies {
   const movie = await MovieModel.create(moviePayload);
 
   return handleResponse(res, 201, true, 'Movie was successfully saved', movie);
+}
+
+static async getAllUserMovieList(req: Request, res: Response){
+  const movies = MovieModel.find({
+    userId: req.user.userId
+  })
+  return handleResponse(res, 201, true, 'Movie was successfully retrived', movies);
  }
+
+ 
 }
 
 export default Movies

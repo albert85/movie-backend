@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-escape */
 import { check } from 'express-validator';
 
 const validateBody = {
