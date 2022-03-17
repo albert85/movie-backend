@@ -1,9 +1,9 @@
 import express from 'express';
+import AuthCheck from '../helpers/validator';
+import Movies from './services';
 
 const route = express.Router();
 
-route.get('/', (req, res) => {
-  return res.status(200).json({ message: 'welcome movies' });
-})
+route.get('/', AuthCheck.checkAuthStatus, AuthCheck.checkAuthStatus, Movies.createMovieList);
 
 export default route;
