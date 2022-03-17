@@ -38,6 +38,7 @@ static async getAllUserMovieList(req: Request, res: Response){
   return handleResponse(res, 201, true, 'Movie was successfully retrived', movies);
  }
 
+
 static async updateMovieList(req: Request, res: Response){
   const checkIfExist = await MovieModel.findOne({ movieId: req.params.movieId, userId: req.user.userId });
 
@@ -60,6 +61,21 @@ static async updateMovieList(req: Request, res: Response){
     ...moviePayload
   })
   return handleResponse(res, 201, true, 'Movie was successfully updated');
+ }
+
+static async deleteMovieList(req: Request, res: Response){
+  const checkIfExist = await MovieModel.findOne({ movieId: req.params.movieId, userId: req.user.userId });
+
+  if(!checkIfExist){
+    return handleResponse(res, 400, false, 'Movie do not exist on your list');
+  }
+
+
+  await MovieModel.deleteOne({
+    movieId: req.params.movieId,
+    userId: req.user.userId
+  })
+  return handleResponse(res, 201, true, 'Movie was successfully deleted');
  }
 
 

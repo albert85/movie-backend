@@ -18,6 +18,14 @@ route.route('/')
     AuthCheck.checkAuthStatus,
     Movies.getAllUserMovieList);
 
-route.get('/movieId', AuthCheck.checkAuthStatus, AuthCheck.checkAuthStatus, Movies.updateMovieList);
+route.route('/movieId')
+  .get(
+    AuthCheck.checkAuthStatus,
+    AuthCheck.checkAuthStatus,
+    Movies.updateMovieList)
+  .delete(
+    AuthCheck.checkAuthStatus,
+    AuthCheck.checkAuthStatus,
+    Movies.deleteMovieList);
 
 export default route;
