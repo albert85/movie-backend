@@ -1,9 +1,9 @@
 import express from 'express';
+import User from './services';
 
 const route = express.Router();
 
-route.get('/', (req, res) => {
-  return res.status(200).json({ message: 'welcome users' });
-})
+route.post('/register', User.register);
+route.post('/login', User.userLogin);
 
 export default route;

@@ -7,7 +7,6 @@ const app = express();
 
 app.use('/users', User);
 app.use('/movies', Movies);
-app.use('/movies', Movies);
 app.use('/', otherRoutes);
 
 export default app;

@@ -2,13 +2,16 @@ import express from "express";
 import bodyParser from "body-parser";
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import route from './route';
 
 dotenv.config();
 
 const app = express();
 
+app.use(cors())
 app.use(bodyParser.json());
+
 
 var databaseUrl = process.env.DATABASE_URL || '';
 

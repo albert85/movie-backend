@@ -18,7 +18,7 @@ route.route('/')
     AuthCheck.checkAuthStatus,
     Movies.getAllUserMovieList);
 
-route.route('/movieId')
+route.route('/:movieId')
   .get(
     AuthCheck.checkAuthStatus,
     AuthCheck.checkAuthStatus,

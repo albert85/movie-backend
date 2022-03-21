@@ -25,12 +25,19 @@ class User {
     const newUser = user.toObject();
     delete newUser.password;
 
+    const token = generateToken({
+      firstName: newUser.firstName,
+      lastName: newUser.lastName,
+      userId: newUser._id
+    });
+
     return handleResponse(
       res,
       201,
       true,
       'Registering User was successfully',
-      { user: newUser },
+      { user: {...newUser} },
+      token
     );
   }
 

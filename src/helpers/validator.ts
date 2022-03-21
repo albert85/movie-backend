@@ -1,4 +1,4 @@
-
+// @ts-nocheck
 import { handleResponse, decodeToken } from './util';
 import { Response, Request, NextFunction } from 'express';
 

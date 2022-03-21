@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Request, Response} from 'express';
 import MovieModel from './models/movies';
 import { handleResponse } from '../helpers/util';
@@ -10,6 +11,7 @@ class Movies {
      movieId: req.body.movieId,
      type: req.body.type,
      poster: req.body.poster,
+     userId: req.user.userId
    }
 
   //  check if movie as exceeded 10
@@ -28,14 +30,14 @@ class Movies {
 
   const movie = await MovieModel.create(moviePayload);
 
-  return handleResponse(res, 201, true, 'Movie was successfully saved', movie);
+  return handleResponse(res, 201, true, `${movie.title} was added to your list`, movie);
 }
 
 static async getAllUserMovieList(req: Request, res: Response){
-  const movies = MovieModel.find({
+  const movies = await MovieModel.find({
     userId: req.user.userId
   })
-  return handleResponse(res, 201, true, 'Movie was successfully retrived', movies);
+  return handleResponse(res, 200, true, 'Movie was successfully retrived', movies);
  }
 
 
@@ -75,7 +77,7 @@ static async deleteMovieList(req: Request, res: Response){
     movieId: req.params.movieId,
     userId: req.user.userId
   })
-  return handleResponse(res, 201, true, 'Movie was successfully deleted');
+  return handleResponse(res, 201, true, 'Movie was successfully remove from your list');
  }
 
 
